@@ -62,6 +62,16 @@
                                 <a class="dropdown-item" href="{{ route('links.create') }}"><i class="fas fa-plus"></i> Agregar</a>
                             </div>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Redes Sociales
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('redes-sociales.index') }}"><i class="far fa-list-alt"></i> Listar</a>
+                                <a class="dropdown-item" href="{{ route('redes-sociales.create') }}"><i class="fas fa-plus"></i> Agregar</a>
+                            </div>
+                        </li>
 
                         <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
