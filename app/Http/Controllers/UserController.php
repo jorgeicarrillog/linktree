@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\AvatarRequest;
 
 class UserController extends Controller
 {
@@ -42,5 +46,32 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('home')->with('_success', '¡Perfil editado exitosamente!');
+    }
+
+    public function upload_avatar(AvatarRequest $request)
+    {
+
+        if($request->file('avatar')){
+
+            $user = auth()->user();
+            
+            if($user->avatar != NULL){
+                Storage::disk('avatars')->delete($user->avatar);
+            }
+
+            $avatar_name = $user->id.'-'.Str::random(25).'.'.$request->file('avatar')->getClientOriginalExtension();
+            $avatar_path = $request->file('avatar')->storeAs('',$avatar_name, 'avatars');
+    
+            $user->avatar = $avatar_path;
+    
+            if($user->save()){
+                return back()->with('_success', '¡Avatar publicado exitosamente!');
+            }else{
+                return back()->with('_error', 'Hubo un problema, no se pudo subir el avatar.');
+            }
+    
+        }
+    
+        return back()->with('_error', 'Hubo un problema, no se pudo subir el avatar.');
     }
 }

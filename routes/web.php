@@ -28,4 +28,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('redes-sociales', App\Http\Controllers\SocialNetworkController::class)->parameters(['redes-sociales' => 'socialNetwork']);
     Route::get('perfil', [App\Http\Controllers\UserController::class, 'edit'])->name('usuario.edit');
     Route::put('perfil', [App\Http\Controllers\UserController::class, 'update'])->name('usuario.update');
+    Route::post('perfil/avatar', [App\Http\Controllers\UserController::class, 'upload_avatar'])->name('usuario.avatar');
 });
