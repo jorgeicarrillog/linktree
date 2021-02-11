@@ -8,9 +8,10 @@
     
     <div class="row justify-content-center">
         <div class="profile-header-container">
-            <div class="profile-header-img">
+            <div class="profile-header-img text-center">
                 <img class="rounded-circle mb-2" width="125" src="{{ (empty($user->avatar)?\Avatar::create($user->name)->toBase64():Storage::disk('avatars')->url($user->avatar)) }}" />
-                <form action="{{ route('usuario.avatar') }}" method="post" class="text-center" enctype="multipart/form-data">
+                <p><a href="{{route('usuario.show', $user)}}">{{'@'.$user->username}}</a></p>
+                <form action="{{ route('usuario.avatar') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <label for="avatar" class="btn btn-primary">Subir</label>
                     <input type="file" accept=".jpg,.jpeg,.png,.gif" name="avatar" id="avatar" style="display: none;" onchange="this.form.submit()">
